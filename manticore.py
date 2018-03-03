@@ -62,6 +62,10 @@ class ManticoreCommand(GenericCommand):
                     # No such symbol, this is an address
                     value = int(symbol_or_address, 16)
 
+                func = None # Todo;
+                if not func:
+                    warn("Using default. hook func, use the `python` command first first to define it.") # Or use source
+                self.add_hook(value, func)
                 # elif opt == 
             else:
                 self.usage()
