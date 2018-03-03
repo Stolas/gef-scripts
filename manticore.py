@@ -43,6 +43,11 @@ class ManticoreCommand(GenericCommand):
             return False
         return True
 
+    def pre_load(self):
+        if PYTHON_MAJOR != 2:
+            raise RuntimeError("Manticore requires Python 2, see https://github.com/trailofbits/manticore/issues/45")
+
+
     @only_if_gdb_running         # not required, ensures that the debug session is started
     def do_invoke(self, argv):
         opts = getopt.getopt(argv, "h:")[0]
